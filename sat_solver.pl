@@ -52,15 +52,21 @@
 % code than that, ask to make sure you're still on track.
 %
 
-isTrue(lit(true, positive)).
-isTrue(lit(false, negative)).
+% isTrue(lit(true, positive)).
+% isTrue(lit(false, negative)).
+isTrue(lit(Var, positive)) :-
+    Var = true.
+
+isTrue(lit(Var, negative)) :-
+    Var = false.
 
 isTrue(and(A, B)) :-
     isTrue(A),
     isTrue(B).
 
 isTrue(or(A, B)) :-
-    isTrue(A).
+    % isTrue(A).
+    (isTrue(A); isTrue(B)).
 
 % ---Begin Testing-Related Code---
 %
