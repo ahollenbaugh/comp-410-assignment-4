@@ -52,6 +52,16 @@
 % code than that, ask to make sure you're still on track.
 %
 
+isTrue(lit(true, positive)).
+isTrue(lit(false, negative)).
+
+isTrue(and(A, B)) :-
+    isTrue(A),
+    isTrue(B).
+
+isTrue(or(A, B)) :-
+    isTrue(A).
+
 % ---Begin Testing-Related Code---
 %
 % Once you have implemented isTrue, you can run the tests below with the
