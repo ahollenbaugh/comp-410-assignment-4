@@ -64,6 +64,24 @@ or(false, false, false).
 % code than that, ask to make sure you're still on track.
 %
 
+% Base cases (WLOG, if the expression evaluates to true, return true):
+eval(true, true).
+eval(false, false).
+
+% Handle the "and" case by recursing on each subexpression until you get boolean values.
+% Then, use those boolean values to build a more simple boolean expression which 
+% can be handled by either base case.
+eval(and(X, Y), Result) :-
+    eval(X, XResult),
+    eval(Y, YResult),
+    and(XResult, YResult, Result).
+
+% Same process, but for the "or" case.
+eval(or(X, Y), Result) :-
+    eval(X, XResult),
+    eval(Y, YResult),
+    or(XResult, YResult, Result).
+
 % ---Begin Testing-Related Code---
 %
 % Once you have implemented eval, you can run the tests below with the
